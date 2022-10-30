@@ -1,18 +1,14 @@
 let liElement = document.querySelectorAll(".list-group-item");
 let count = 0;
 
-liElement.forEach((item) => {
-    count++;
-    if (count == 4) {
-        item.innerHTML += `<li class="new-class" style="list-style: none; color:red; background-color:black">
-        Added ITEM 5 by Class Name
+for (let i = 0; i < liElement.length; i++) {
+    if (i == 1) {
+        liElement[i].innerHTML = `<li class="list-group-item" style="list-style: none; color:green;">
+        ITEM 2
+    </li>`;
+    } else if (i % 2 == 0) {
+        liElement[i].innerHTML = `<li class="list-group-item" style="list-style: none; color:blue; background-color:green">
+        ODD ITEM
     </li>`;
     }
-});
-
-let tagList = document.getElementsByTagName('li');
-
-
-tagList[tagList.length - 1].innerHTML = `<li class="new-class" style="list-style: none; color:red; background-color:black">
-Modified ITEM 5 BY TAG NAME
-</li>`;
+}
