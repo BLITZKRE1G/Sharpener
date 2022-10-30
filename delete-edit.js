@@ -41,4 +41,19 @@ submit.addEventListener('submit', function (e) {
 })
 
 
-
+let filterElement = document.querySelector('#filter');
+//FIlter Event
+filterElement.addEventListener('keyup', function (event) {
+    let text = event.target.value.toLowerCase();
+    //let text = document.querySelector('#filter').value.toLowerCase();
+    var items = itemList.getElementsByTagName('li');
+    // Convert to Array
+    Array.from(items).forEach(function (item) {
+        var itemName = item.firstChild.textContent;
+        if (itemName.toLocaleLowerCase().indexOf(text) != -1) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    })
+})
