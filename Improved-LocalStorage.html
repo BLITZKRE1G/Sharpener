@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="text-align: center;">
+    <br><br><br><br><br><br><br>
+    <form id="details" action="">
+        <input type="text" name="name" id="nameInput" placeholder="Name"><br>
+        <input type="text" name="address" id="addrInput" placeholder="Address"><br>
+        <input type="submit" value="Submit"><br>
+    </form>
+    <br><br><br><br>
+    <h2>USERS:</h2>
+    <ul id="localStorageElements">
+
+    </ul>
+
+    <script>
+        let form = document.querySelector('#details');
+        console.log(form)
+        let i = 0;
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let nameVal = document.querySelector('#nameInput').value;
+            let addressVal = document.querySelector('#addrInput').value;
+            // Add to Local Storage
+            // localStorage.setItem('name', nameVal);
+            // localStorage.setItem('address', addressVal);
+
+            let personObj = {
+                name: nameVal,
+                address: addressVal
+            };
+
+            localStorage.setItem(`person${i}`, JSON.stringify(personObj));
+            i++;
+        });
+
+
+        console.log(i);
+        let localArr = [];
+
+        for (let j = 0; j < localStorage.length; j++) {
+            console.log(localStorage.getItem(`person${j}`));
+            // console.log()
+            localArr.push(window.localStorage.getItem(`person${j}`));
+        }
+
+        console.log(localArr);
+
+        let storedItems = document.getElementById('localStorageElements');
+
+        for (let j = 0; j < localStorage.length; j++) {
+            let li = document.createElement('li');
+            li.innerText = window.localStorage.getItem(`person${j}`);
+            li.setAttribute('style', 'list-style: none');
+            storedItems.appendChild(li);
+        }
+
+    </script>
+</body>
+
+</html>
