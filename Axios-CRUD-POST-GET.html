@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"></script>
+</head>
+
+<body
+    style="color:rgb(11, 35, 56); text-align: center; background-image: url(https://img.freepik.com/free-vector/hand-drawn-minimal-background_23-2149007819.jpg?w=1380&t=st=1666954820~exp=1666955420~hmac=deebd8849143c546b74259797cb81a2c46410466abf128ecda20f537d6f0f4cc); background-size: cover;">
+    <h1 style="margin-top: 270px;">Expenses</h1>
+    <br>
+    <form action="" id="expenses">
+        <input type="text" id="expenseAmount" placeholder="Expense Amount"><br>
+        <input type="text" id="descriptionEl" placeholder="Expense Description"><br>
+        <label for="catagory">Catagory:</label>
+        <select id="catagory">
+            <option value="food">Food</option>
+            <option value="movies">Movies</option>
+            <option value="petrol">Petrol</option>
+        </select><br>
+        <input type="submit" value="Add Expense" class="btn btn-success">
+    </form>
+
+    <ul id="expense-list" style="margin-bottom: 270px;">
+    </ul>
+
+    <script>
+        let form = document.querySelector("#expenses");
+        let expenseList = document.querySelector("#expense-list");
+        let index = localStorage.length;
+
+        for (let i = 1; i <= index; i++) {
+            let item = document.createElement('li');
+            let itemDetail = localStorage.getItem(`expense${index}`);
+            item.appendChild(document.createTextNode(itemDetail));
+
+            let delBtn = document.createElement('button');
+            delBtn.textContent = "Delete";
+            delBtn.id = "delete";
+            delBtn.className = 'btn btn-danger';
+
+            let editBtn = document.createElement('button');
+            editBtn.textContent = "Edit";
+            editBtn.id = 'edit';
+            editBtn.className = 'btn btn-warning';
+            item.appendChild(editBtn);
+            item.appendChild(delBtn);
+
+            expenseList.appendChild(item);
+        }
+
+        console.log(localStorage.getItem(`expense${index}`));
+        axios.get('https://crudcrud.com/api/b6a47a7405be4fa494ab131e9940a556/expenseData')
+            .then(res => {
+                res.statusText += 'GET'
+                for (let i = 0; i < res.data.length; i++) {
+                    let item = document.createElement('li');
+                    //let itemDetail = localStorage.getItem(`expense${index}`);
+                    let itemDetail = `${res.data[i].amount} : ${res.data[i].description} : ${res.data[i].catagory}`;
+
+                    item.appendChild(document.createTextNode(itemDetail));
+
+                    let delBtn = document.createElement('button');
+                    delBtn.textContent = "Delete";
+                    delBtn.id = "delete";
+                    delBtn.className = 'btn btn-danger';
+
+                    let editBtn = document.createElement('button');
+                    editBtn.textContent = "Edit";
+                    editBtn.id = 'edit';
+                    editBtn.className = 'btn btn-warning';
+                    item.appendChild(editBtn);
+                    item.appendChild(delBtn);
+
+                    expenseList.appendChild(item);
+                }
+                console.log(res);
+            }).catch(err => console.log(err));
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let amount = document.querySelector("#expenseAmount").value;
+            let description = document.querySelector("#descriptionEl").value;
+            let catagory = document.querySelector("#catagory").value;
+            console.log(catagory);
+
+            let item = document.createElement('li');
+            let itemDetail = `${amount} - ${description} - ${catagory}`;
+            item.appendChild(document.createTextNode(itemDetail));
+
+            let delBtn = document.createElement('button');
+            delBtn.textContent = "Delete";
+            delBtn.id = "delete";
+            delBtn.className = 'btn btn-danger';
+
+            let editBtn = document.createElement('button');
+            editBtn.textContent = "Edit";
+            editBtn.id = 'edit';
+            editBtn.className = 'btn btn-warning';
+            item.appendChild(editBtn);
+            item.appendChild(delBtn);
+
+            expenseList.appendChild(item);
+
+            //localStorage.setItem(`expense${++index}`, JSON.stringify(itemDetail));
+
+            let object = {
+                amount: amount,
+                description: description,
+                catagory: catagory
+            };
+            axios.post('https://crudcrud.com/api/b6a47a7405be4fa494ab131e9940a556/expenseData', object)
+                .then((res) => console.log('RESPONSE: ', res))
+                .catch((error) => console.log(error));
+        });
+
+        expenseList.addEventListener('click', function (e) {
+            if (e.target.id == 'delete') {
+                let expense = e.target.parentElement;
+                expenseList.removeChild(expense);
+                //localStorage.removeItem(`expense${index}`);
+
+                index--;
+                console.log('deleted');
+            } else if (e.target.id = 'edit') {
+                let amount = document.querySelector("#expenseAmount").value;
+                let description = document.querySelector("#descriptionEl").value;
+                let catagory = document.querySelector("#catagory").value;
+
+                let item = document.createElement('li');
+                let itemDetails = `${amount} - ${description} - ${catagory}`;
+                item.appendChild(document.createTextNode(itemDetails));
+
+                let delBtn = document.createElement('button');
+                delBtn.textContent = "Delete";
+                delBtn.id = "delete";
+                delBtn.className = 'btn btn-danger';
+
+                let editBtn = document.createElement('button');
+                editBtn.textContent = "Edit";
+                editBtn.id = 'edit';
+                editBtn.className = 'btn btn-warning';
+                item.appendChild(editBtn);
+                item.appendChild(delBtn);
+
+                expenseList.removeChild(e.target.parentElement);
+                expenseList.appendChild(item);
+                // localStorage.removeItem(`expense${index}`);
+                // localStorage.setItem(`expense${index}`, JSON.stringify(itemDetails));
+            }
+        })
+    </script>
+</body>
+
+</html>
