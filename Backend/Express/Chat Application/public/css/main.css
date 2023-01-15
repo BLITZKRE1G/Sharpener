@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    padding: 0;
+    /* background-color: rgb(26, 25, 25); */
+    /* font-family: sans-serif; */
+}
+
+.main {
+    padding: 1rem;
+}
+
+.main-header {
+    width: 100%;
+    height: 3.5rem;
+    background-color: #e6ba2c;
+    padding: 0 1.5rem;
+}
+
+.main-header__item-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.main-header__item {
+    margin: 0 1rem;
+    padding: 0;
+}
+
+.main-header__item a {
+    text-decoration: none;
+    color: black;
+}
+
+.main-header__item a:hover,
+.main-header__item a:active {
+    color: rgb(238, 88, 19);
+    font-size: 1.2rem;
+}
+
+.main-header__nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.form-control-sm {
+    margin: 1rem 0;
+}
+
+
+.form-control-sm input {
+    display: block;
+    font-size: large;
+    width: 100%;
+    border: 1px solid #e6ba2c;
+    font: inherit;
+    border-radius: 4px;
+    margin: 0.2rem 0;
+    font-size: large;
+}
+
+button {
+    font: inherit;
+    border: 2px solid#e6ba2c;
+    color: #e6ba2c;
+    border-radius: 4px;
+    background: white;
+    font-size: large;
+    /* cursor: pointer; */
+    width: 100%;
+    margin: 4px;
+    padding: 5px;
+}
+
+button:hover,
+button:active {
+    background-color: #e6ba2c;
+    color: white;
+}
+
+.login-form {
+    width: 30rem;
+    max-width: 90%;
+    margin: auto;
+}
+
+.chat-form {
+    width: 30rem;
+    max-width: 90%;
+    margin: auto;
+}
