@@ -24,33 +24,18 @@
                 <li class="main-header__item">
                     <a href="/chat">CHAT</a>
                 </li>
+                <li class="main-header__item">
+                    <a href="/contact-us">Contact Us</a>
+                </li>
             </ul>
         </nav>
     </header>
     <main style="text-align: center;">
         <br><br><br><br><br><br><br><br><br><br><br><br>
         <h3>Welcome to CHAT</h3>
+        <h4 style="color: orange;">Please Login by clicking on the "Login" option from the Navbar to Continue...</h4>
+        <h5 style="color: rgb(248, 34, 34);">If you cannot Login, Please select Contact us from the Navbar</h5>
     </main>
-
-    <script>
-        let i = 1;
-        const buttonElement = document.querySelector('#button-el');
-        buttonElement.addEventListener('mouseover', () => {
-            buttonElement.className = 'btn btn-success';
-            buttonElement.style.color = 'white';
-        });
-
-        buttonElement.addEventListener('mouseout', () => {
-            i++;
-            if (i % 2 != 0) {
-                buttonElement.className = 'btn btn-warning';
-                buttonElement.style.color = 'black';
-            } else {
-                buttonElement.className = 'btn btn-danger';
-                buttonElement.style.color = 'white';
-            }
-        });
-    </script>
 </body>
 
 </html>
