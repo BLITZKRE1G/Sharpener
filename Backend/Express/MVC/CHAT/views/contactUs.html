@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us</title>
+    <link rel="stylesheet" href="/css/contact.css">
+    <link rel="shortcut icon" href="/icon/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header class="contact-header">
+        <nav class="contact-header__nav">
+            <ul class="contact-header__item-list">
+                <li class="contact-header__item">
+                    <a href="/login">Login</a>
+                </li>
+                <li class="contact-header__item">
+                    <a href="/chat">CHAT</a>
+                </li>
+                <li class="contact-header__item">
+                    <a href="/contact-us">Contact Us</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="contact-main">
+        <form action="/success" class="contact-main__form" method="POSt">
+            <div class="contact-main__form-control">
+                <input type="text" name="name" id="name-el" placeholder="Name:">
+            </div>
+
+            <div class="contact-main__form-control">
+                <input type="email" name="email" id="email-el" placeholder="Email:">
+            </div>
+
+            <div class="contact-main__form-control">
+                <input type="number" name="phone" id="phone-el" placeholder="Phone:">
+            </div>
+            <div class="contact-main__form-control">
+                <label for="Time">Time for Call:</label>
+                <input type="datetime-local" name="datetime-local" id="datetime-local-el">
+            </div>
+
+            <div class="contact-main__form-control">
+                <button type="submit">
+                    submit
+                </button>
+            </div>
+        </form>
+    </main>
+</body>
+
+</html>
